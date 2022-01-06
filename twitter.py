@@ -10,4 +10,4 @@ api = tweepy.API(auth, wait_on_rate_limit=True) # tweeky removed 'wait_on_rate_l
 #screen_name = "TheArtOfFreedom"
 user = api.get_user(screen_name='ArtOFreedom_NFT')
 
-print(user)
+print('name: ' + user.screen_name + ' :: ' + 'ID: ' + str(user.id))
