@@ -10,4 +10,9 @@ api = tweepy.API(auth, wait_on_rate_limit=True) # tweeky removed 'wait_on_rate_l
 #screen_name = "TheArtOfFreedom"
 user = api.get_user(screen_name='ArtOFreedom_NFT') #actually the screen_name is the Twitter username without the @
 
-print('name: ' + user.screen_name + ' :: ' + 'ID: ' + str(user.id))
+#print('name: ' + user.screen_name + ' :: ' + 'ID: ' + str(user.id))
+
+foll = api.get_followers(user)
+print(foll)
+#for follower in api.get_followers(user):
+#    print(follower.user)
