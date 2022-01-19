@@ -12,7 +12,5 @@ user = api.get_user(screen_name='ArtOFreedom_NFT') #actually the screen_name is 
 
 #print('name: ' + user.screen_name + ' :: ' + 'ID: ' + str(user.id))
 
-foll = api.get_followers(user)
-print(foll)
-#for follower in api.get_followers(user):
-#    print(follower.user)
+for follower in tweepy.Cursor(api.get_followers).items():
+    print(follower.name)
