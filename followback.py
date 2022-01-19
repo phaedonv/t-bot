@@ -17,10 +17,14 @@ user = api.get_user(screen_name='ArtOFreedom_NFT') #actually the screen_name is 
 #    print(follower.name + "         followed back")
 #    time.sleep(21)
 
-ids = []
+followers = tweepy.Cursor(api.get_followers).items()
+friends = tweepy.Cursor(api.get_friends).items()
 
-for follower in tweepy.Cursor(api.get_followers).items():
-    ids.append(follower.name)
-    time.sleep(0)
-
-print(ids[0])
+for f in followers:
+    if f not in friends:
+        #print(f)
+        print("Follow back   " + f.name)
+        f.follow()
+        time.sleep(10)
+    else:
+        continue
