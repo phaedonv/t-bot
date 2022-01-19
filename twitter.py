@@ -28,6 +28,7 @@ media_nft = 'media/sound_of_da_police.png'
 #The ID of last tweet is known : 1483865642285551620
 
 #let's try to delete a tweet! 
+""""
 ID = 1483865642285551620
 api.destroy_status(ID)
 
@@ -35,5 +36,24 @@ try:
     api.get_status(ID)
 except:
     print('The tweet has beed deleted😎')
+
+"""
+#tweet art of freedom's hic et nunc profile!
+
+hicetnunc = """
+Hello #nftcommunity!
+Here is my brand new #hicetnunc profile page!
+Feel free to check and keep an eye on it 👀
+
+🟢https://hicetnunc.art/artoffreedom
+
+#nft #tezosnft #nftart #crypto #tezosart #hicetnunc2000 #artoffreedom #cryptoart
+"""
+#print(hicetnunc) #testing string
+
+api.update_status(hicetnunc)
+print('😎 Tweet has been submitted 😎')
+
+
 
    
