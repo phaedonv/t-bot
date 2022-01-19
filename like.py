@@ -1,3 +1,5 @@
+#favorite tweet based on search term
+
 import tweepy
 from keys import keys
 import time
@@ -14,21 +16,15 @@ api = tweepy.API(auth, wait_on_rate_limit=True) # tweeky removed 'wait_on_rate_l
 #screen_name = "TheArtOfFreedom"
 user = api.get_user(screen_name='ArtOFreedom_NFT') #actually the screen_name is the Twitter username without the @
 
-#print('name: ' + user.screen_name + ' :: ' + 'ID: ' + str(user.id)) #just testing ;)
+search_term = 'NFT'
+nrTweets = 500
 
-#for follower in tweepy.Cursor(api.get_followers).items():
-    #follower.follow()
-#    print(follower.name + "         followed back")
-#    time.sleep(21)
-
-followers = tweepy.Cursor(api.get_followers).items()
-friends = tweepy.Cursor(api.get_friends).items()
-
-for f in followers:
-    if f not in friends:
-        #print(f)
-        print("Follow back   " + f.name)
-        f.follow()
+for tweet in tweepy.Cursor(api.search_tweets, search_term).items(nrTweets):
+    try:
+        tweet.favorite()
+        print('Tweet Liked')
         time.sleep(10)
-    else:
-        continue
+    #except tweepy.errors.TweepError as e:
+        #print(e.reason)
+    except StopIteration:
+        break  
