@@ -16,13 +16,13 @@ api = tweepy.API(auth, wait_on_rate_limit=True) # tweeky removed 'wait_on_rate_l
 #screen_name = "TheArtOfFreedom"
 user = api.get_user(screen_name='ArtOFreedom_NFT') #actually the screen_name is the Twitter username without the @
 
-search_term = 'NFT'
+search_term = 'nft' or '#nft' or 'nftartwork' or 'nftcommunity' or 'cryptoart'
 nrTweets = 500
 
-for tweet in tweepy.Cursor(api.search_tweets, search_term).items(nrTweets):
+for tweet in tweepy.Cursor(api.search_tweets, search_term, result_type='recent', lang="en").items(nrTweets):
     try:
         tweet.favorite()
-        print('Tweet Liked')
+        print(' Tweet Liked')
         time.sleep(10)
     #except tweepy.errors.TweepError as e:
         #print(e.reason)
