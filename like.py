@@ -27,11 +27,12 @@ for tweet in tweepy.Cursor(api.search_tweets, search_term, result_type='recent',
 
         #I have to find a way to print the name of the user that tweeted.. 
         #entities example: entities = {'hashtags': [], 'symbols': [], 'user_mentions': [{'screen_name': 'BrettLeeWEB3', 'name': 'Brett Lee ♤', 'id': 1448190946688991234, 'id_str': '1448190946688991234', 'indices': [3, 16]}], 'urls': []}
-        
-        #print(tweet.entities[user_mentions]([name]))
-        print('  Tweet ',tweet.id, ' Liked')
+        #print(tweet.entities['user_mentions'][0]['name'] this sometimes gives IndexError: list index out of range
+        print(tweet.entities['user_mentions'][0]['name'], "'s "  'tweet ',tweet.id, ' liked')
         time.sleep(10)
     #except tweepy.errors.TweepError as e:
         #print(e.reason)
     except StopIteration:
         break  
+
+    #Also I have to fix "tweepy.errors.Forbidden: 403 Forbidden 139 - You have already favorited this status." error!
