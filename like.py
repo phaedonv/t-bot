@@ -20,18 +20,21 @@ user = api.get_user(screen_name='ArtOFreedom_NFT') #actually the screen_name is 
 
 search_term = 'nft' or '#nft' or 'nftartwork' or 'nftcommunity' or 'cryptoart'
 nrTweets = 500
-        
+LIKE = True  
+
 for tweet in tweepy.Cursor(api.search_tweets, search_term, result_type='recent', lang="en").items(nrTweets):
     try:
-        tweet.favorite()
+        if LIKE:
+            if not tweet.favorited:
+                tweet.favorite()
 
-        #I have to find a way to print the name of the user that tweeted.. 
-        #entities example: entities = {'hashtags': [], 'symbols': [], 'user_mentions': [{'screen_name': 'BrettLeeWEB3', 'name': 'Brett Lee ♤', 'id': 1448190946688991234, 'id_str': '1448190946688991234', 'indices': [3, 16]}], 'urls': []}
-        #print(tweet.entities['user_mentions'][0]['name'] this sometimes gives IndexError: list index out of range
-        print(tweet.entities['user_mentions'][0]['name'], "'s "  'tweet ',tweet.id, ' liked')
-        time.sleep(10)
-    #except tweepy.errors.TweepError as e:
-        #print(e.reason)
+                #I have to find a way to print the name of the user that tweeted.. 
+                #entities example: entities = {'hashtags': [], 'symbols': [], 'user_mentions': [{'screen_name': 'BrettLeeWEB3', 'name': 'Brett Lee ♤', 'id': 1448190946688991234, 'id_str': '1448190946688991234', 'indices': [3, 16]}], 'urls': []}
+                #print(tweet.entities['user_mentions'][0]['name'] this sometimes gives IndexError: list index out of range
+                print(tweet.user.screen_name, "'s "  'tweet ',tweet.id, ' liked')
+                time.sleep(10)
+            #except tweepy.errors.TweepError as e:
+                #print(e.reason)
     except StopIteration:
         break  
 
