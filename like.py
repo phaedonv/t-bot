@@ -33,7 +33,13 @@ while True:
                     #entities example: entities = {'hashtags': [], 'symbols': [], 'user_mentions': [{'screen_name': 'BrettLeeWEB3', 'name': 'Brett Lee ♤', 'id': 1448190946688991234, 'id_str': '1448190946688991234', 'indices': [3, 16]}], 'urls': []}
                     #print(tweet.entities['user_mentions'][0]['name'] this sometimes gives IndexError: list index out of range
                     print(tweet.user.screen_name, "'s "  'tweet ',tweet.id, ' liked')
-                    time.sleep(10)
+                    
+                    print("""
+                    > S L E E P I N G <
+                        for 1 minute
+                     . . . . . . . . .
+                    """)
+                    time.sleep(60)
                 #except tweepy.errors.TweepError as e:
                     #print(e.reason)
         except StopIteration:
