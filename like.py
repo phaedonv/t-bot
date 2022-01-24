@@ -1,4 +1,5 @@
 #favorite tweet based on search term
+from config import LIKE
 
 from tkinter import N
 from turtle import end_fill
@@ -19,23 +20,25 @@ api = tweepy.API(auth, wait_on_rate_limit=True) # tweeky removed 'wait_on_rate_l
 user = api.get_user(screen_name='ArtOFreedom_NFT') #actually the screen_name is the Twitter username without the @
 
 search_term = 'nft' or '#nft' or 'nftartwork' or 'nftcommunity' or 'cryptoart'
-nrTweets = 500
-LIKE = True  
+nrTweets = 900 
 
-for tweet in tweepy.Cursor(api.search_tweets, search_term, result_type='recent', lang="en").items(nrTweets):
-    try:
-        if LIKE:
-            if not tweet.favorited:
-                tweet.favorite()
+while True:
+    for tweet in tweepy.Cursor(api.search_tweets, search_term, result_type='recent', lang="en").items(nrTweets):
+        try:
+            if LIKE:
+                if not tweet.favorited:
+                    tweet.favorite()
 
-                #I have to find a way to print the name of the user that tweeted.. 
-                #entities example: entities = {'hashtags': [], 'symbols': [], 'user_mentions': [{'screen_name': 'BrettLeeWEB3', 'name': 'Brett Lee ♤', 'id': 1448190946688991234, 'id_str': '1448190946688991234', 'indices': [3, 16]}], 'urls': []}
-                #print(tweet.entities['user_mentions'][0]['name'] this sometimes gives IndexError: list index out of range
-                print(tweet.user.screen_name, "'s "  'tweet ',tweet.id, ' liked')
-                time.sleep(10)
-            #except tweepy.errors.TweepError as e:
-                #print(e.reason)
-    except StopIteration:
-        break  
+                    #I have to find a way to print the name of the user that tweeted.. DONE
+                    #entities example: entities = {'hashtags': [], 'symbols': [], 'user_mentions': [{'screen_name': 'BrettLeeWEB3', 'name': 'Brett Lee ♤', 'id': 1448190946688991234, 'id_str': '1448190946688991234', 'indices': [3, 16]}], 'urls': []}
+                    #print(tweet.entities['user_mentions'][0]['name'] this sometimes gives IndexError: list index out of range
+                    print(tweet.user.screen_name, "'s "  'tweet ',tweet.id, ' liked')
+                    time.sleep(10)
+                #except tweepy.errors.TweepError as e:
+                    #print(e.reason)
+        except StopIteration:
+            break
+        except tweepy.errors.TweepyException as e:
+            print(e)  
 
     #Also I have to fix "tweepy.errors.Forbidden: 403 Forbidden 139 - You have already favorited this status." error!
