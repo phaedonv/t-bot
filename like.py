@@ -30,16 +30,8 @@ while True:
                     tweet.favorite()
 
                     #I have to find a way to print the name of the user that tweeted.. DONE
-                    #entities example: entities = {'hashtags': [], 'symbols': [], 'user_mentions': [{'screen_name': 'BrettLeeWEB3', 'name': 'Brett Lee ♤', 'id': 1448190946688991234, 'id_str': '1448190946688991234', 'indices': [3, 16]}], 'urls': []}
-                    #print(tweet.entities['user_mentions'][0]['name'] this sometimes gives IndexError: list index out of range
-                    print(tweet.user.screen_name, "'s "  'tweet ',tweet.id, ' liked')
                     
-                    print("""
-                    > S L E E P I N G <
-                        for 1 minute
-                     . . . . . . . . .
-                    """)
-                    time.sleep(60)
+                    time.sleep(90)
                 #except tweepy.errors.TweepError as e:
                     #print(e.reason)
         except StopIteration:
@@ -47,4 +39,4 @@ while True:
         except tweepy.errors.TweepyException as e:
             print(e)  
 
-    #Also I have to fix "tweepy.errors.Forbidden: 403 Forbidden 139 - You have already favorited this status." error!
+    #Also I have to fix "tweepy.errors.Forbidden: 403 Forbidden 139 - You have already favorited this status." error! ..DONE
