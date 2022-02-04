@@ -30,7 +30,13 @@ while True:
                     tweet.favorite()
 
                     #I have to find a way to print the name of the user that tweeted.. DONE
-                    
+                    print(tweet.user.screen_name, "'s "  'tweet ',tweet.id, ' liked')
+
+                    print("""
+                    > S L E E P I N G <
+                        for 1 minute
+                     . . . . . . . . .
+                    """)
                     time.sleep(90)
                 #except tweepy.errors.TweepError as e:
                     #print(e.reason)
