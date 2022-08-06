@@ -34,7 +34,7 @@ while True:
 
                     print("""
                     > S L E E P I N G <
-                        for 1 minute
+                       for 90 seconds
                      . . . . . . . . .
                     """)
                     time.sleep(90)

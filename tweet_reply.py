@@ -21,5 +21,29 @@ user = api.get_user(screen_name='ArtOFreedom_NFT') #actually the screen_name is 
 tweet_query = "nft"
 
 public_tweets = api.search_tweets(q=tweet_query) #api.home_timeline()
-print(public_tweets[0].id)
+#print(public_tweets[0].id)
 #print(public_tweets[0].user.screen_name, " said: ","'", public_tweets[0].text,"'" " at ", public_tweets[0].created_at)
+
+my_reply = "Awesome!!"
+nrTweets = 3
+
+while True:
+    for tweet in tweepy.Cursor(api.search_tweets, tweet_query, result_type='recent', lang="en").items(nrTweets):
+        try:
+            api.update_status(status=my_reply, in_reply_to_status_id = tweet.id, auto_populate_reply_metadata=True)
+
+            print("replied to ", tweet.user.screen_name, "'s "  'tweet, with ID: ', tweet.id)
+
+            print("""
+                    > S L E E P I N G <
+                       for 10 seconds
+                     . . . . . . . . .
+                    """)
+            time.sleep(10)
+
+        except StopIteration:
+            break
+        except tweepy.errors.TweepyException as e:
+            print(e)
+
+
