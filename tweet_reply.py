@@ -11,12 +11,14 @@ API_SECRET = keys['api_secret']
 ACCESS_TOKEN = keys['access_token']
 ACCESS_TOKEN_SECRET = keys['access_token_secret']
 
+USER_NAME = keys['user_name']
+
 auth = tweepy.OAuthHandler(API_KEY,API_SECRET) #api key and secret
 auth.set_access_token(ACCESS_TOKEN,ACCESS_TOKEN_SECRET) #access token and secret
 api = tweepy.API(auth, wait_on_rate_limit=True) # tweeky removed 'wait_on_rate_limit_notify=True' parameter
 
 #screen_name = "TheArtOfFreedom"
-user = api.get_user(screen_name='ArtOFreedom_NFT') #actually the screen_name is the Twitter username without the @
+user = api.get_user(screen_name=USER_NAME) #actually the screen_name is the Twitter username without the @
 
 tweet_query = "nft"
 
@@ -24,7 +26,7 @@ public_tweets = api.search_tweets(q=tweet_query) #api.home_timeline()
 #print(public_tweets[0].id)
 #print(public_tweets[0].user.screen_name, " said: ","'", public_tweets[0].text,"'" " at ", public_tweets[0].created_at)
 
-my_reply = "Awesome!!"
+my_reply = "😎 Awesome!"
 nrTweets = 3
 
 while True:
@@ -32,7 +34,7 @@ while True:
         try:
             api.update_status(status=my_reply, in_reply_to_status_id = tweet.id, auto_populate_reply_metadata=True)
 
-            print("replied to ", tweet.user.screen_name, "'s "  'tweet, with ID: ', tweet.id)
+            print("replied: ", my_reply, ", to ", tweet.user.screen_name, "'s "  'tweet, with ID: ', tweet.id)
 
             print("""
                     > S L E E P I N G <

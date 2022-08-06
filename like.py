@@ -12,12 +12,14 @@ API_SECRET = keys['api_secret']
 ACCESS_TOKEN = keys['access_token']
 ACCESS_TOKEN_SECRET = keys['access_token_secret']
 
+USER_NAME = keys['user_name']
+
 auth = tweepy.OAuthHandler(API_KEY,API_SECRET) #api key and secret
 auth.set_access_token(ACCESS_TOKEN,ACCESS_TOKEN_SECRET) #access token and secret
 api = tweepy.API(auth, wait_on_rate_limit=True) # tweeky removed 'wait_on_rate_limit_notify=True' parameter
 
 #screen_name = "TheArtOfFreedom"
-user = api.get_user(screen_name='ArtOFreedom_NFT') #actually the screen_name is the Twitter username without the @
+user = api.get_user(screen_name=USER_NAME) #actually the screen_name is the Twitter username without the @
 
 search_term = 'nft' or '#nft' or 'nftartwork' or 'nftcommunity' or 'cryptoart'
 nrTweets = 900 
