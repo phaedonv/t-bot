@@ -18,5 +18,8 @@ api = tweepy.API(auth, wait_on_rate_limit=True) # tweeky removed 'wait_on_rate_l
 #screen_name = "TheArtOfFreedom"
 user = api.get_user(screen_name='ArtOFreedom_NFT') #actually the screen_name is the Twitter username without the @
 
-public_tweets = api.home_timeline()
-print(public_tweets[0].user.screen_name, " said: ","'", public_tweets[0].text,"'" " at ", public_tweets[0].created_at)
+tweet_query = "nft"
+
+public_tweets = api.search_tweets(q=tweet_query) #api.home_timeline()
+print(public_tweets[0].id)
+#print(public_tweets[0].user.screen_name, " said: ","'", public_tweets[0].text,"'" " at ", public_tweets[0].created_at)
