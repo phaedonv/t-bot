@@ -6,6 +6,9 @@ import tweepy
 from keys import keys
 import time
 
+from timer import countdown
+from colorama import Fore
+
 API_KEY = keys['api_key']
 API_SECRET = keys['api_secret']
 ACCESS_TOKEN = keys['access_token']
@@ -31,5 +34,8 @@ public_tweets = api.search_tweets(q=tweet_query) #api.home_timeline()
 for status in api.user_timeline(since_id = '1556279461699395584'):
     print(status.id)
 
-    api.destroy_status(status.id)
+    print(Fore.LIGHTRED_EX + "...10 seconds before destruction...")
+    countdown(10)
+
+    #api.destroy_status(status.id)
 

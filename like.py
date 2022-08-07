@@ -7,6 +7,8 @@ import tweepy
 from keys import keys
 import time
 
+from timer import countdown
+
 API_KEY = keys['api_key']
 API_SECRET = keys['api_secret']
 ACCESS_TOKEN = keys['access_token']
@@ -39,7 +41,7 @@ while True:
                        for 90 seconds
                      . . . . . . . . .
                     """)
-                    time.sleep(90)
+                    countdown(90)
                 #except tweepy.errors.TweepError as e:
                     #print(e.reason)
         except StopIteration:
