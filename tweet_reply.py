@@ -1,10 +1,12 @@
 #Reply to tweet based on search term
 
-from config import LIKE
-
 import tweepy
-from keys import keys
+
+from config import LIKE
 import time
+
+from keys import keys
+from timer import countdown
 
 API_KEY = keys['api_key']
 API_SECRET = keys['api_secret']
@@ -43,8 +45,6 @@ my_reply = (f"""
 
 while True:
     for tweet in tweepy.Cursor(api.search_tweets, tweet_query, result_type='recent', lang="en").items(nrTweets):
-        replied.append(tweet.id)
-
         try:
             if tweet.id not in replied:
                 api.update_status(status=my_reply, in_reply_to_status_id = tweet.id, auto_populate_reply_metadata=True)
@@ -56,7 +56,11 @@ while True:
                         for 90 seconds
                         . . . . . . . . .
                         """)
-                time.sleep(90)
+                countdown(90)
+
+                replied.append(tweet.id)
+                print(f"Tweet with ID:{tweet.id} has been added to known IDs array")
+                countdown(3)
 
         except StopIteration:
             break
