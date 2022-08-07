@@ -13,6 +13,8 @@ ACCESS_TOKEN_SECRET = keys['access_token_secret']
 
 USER_NAME = keys['user_name']
 
+OPENSEA_LINK = keys['opensea_link']
+
 auth = tweepy.OAuthHandler(API_KEY,API_SECRET) #api key and secret
 auth.set_access_token(ACCESS_TOKEN,ACCESS_TOKEN_SECRET) #access token and secret
 api = tweepy.API(auth, wait_on_rate_limit=True) # tweeky removed 'wait_on_rate_limit_notify=True' parameter
@@ -20,13 +22,21 @@ api = tweepy.API(auth, wait_on_rate_limit=True) # tweeky removed 'wait_on_rate_l
 #screen_name = "TheArtOfFreedom"
 user = api.get_user(screen_name=USER_NAME) #actually the screen_name is the Twitter username without the @
 
-tweet_query = "nft"
+tweet_query = "'drop it' OR 'drop' OR 'drop your unsold' OR 'sold' 'nft'"
 
 public_tweets = api.search_tweets(q=tweet_query) #api.home_timeline()
 #print(public_tweets[0].id)
 #print(public_tweets[0].user.screen_name, " said: ","'", public_tweets[0].text,"'" " at ", public_tweets[0].created_at)
 
-my_reply = "😎 Awesome!"
+#print("""🐱 Awesome! 
+#👇 check this out 🧡""", OPENSEA_LINK)
+
+my_reply = (f"""
+            🐱 Awesome!  
+            🧡 Check THIS out 👇 
+            {OPENSEA_LINK}
+            """)
+            
 nrTweets = 3
 
 while True:
@@ -38,10 +48,10 @@ while True:
 
             print("""
                     > S L E E P I N G <
-                       for 10 seconds
+                       for 90 seconds
                      . . . . . . . . .
                     """)
-            time.sleep(10)
+            time.sleep(90)
 
         except StopIteration:
             break
