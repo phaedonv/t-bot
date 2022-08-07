@@ -25,6 +25,10 @@ user = api.get_user(screen_name=USER_NAME) #actually the screen_name is the Twit
 tweet_query = "'drop it' OR 'drop' OR 'drop your unsold' OR 'sold' 'nft'"
 
 public_tweets = api.search_tweets(q=tweet_query) #api.home_timeline()
+nrTweets = 900
+
+replied = []
+
 #print(public_tweets[0].id)
 #print(public_tweets[0].user.screen_name, " said: ","'", public_tweets[0].text,"'" " at ", public_tweets[0].created_at)
 
@@ -36,22 +40,23 @@ my_reply = (f"""
             🧡 Check THIS out 👇 
             {OPENSEA_LINK}
             """)
-            
-nrTweets = 3
 
 while True:
     for tweet in tweepy.Cursor(api.search_tweets, tweet_query, result_type='recent', lang="en").items(nrTweets):
+        replied.append(tweet.id)
+
         try:
-            api.update_status(status=my_reply, in_reply_to_status_id = tweet.id, auto_populate_reply_metadata=True)
+            if tweet.id not in replied:
+                api.update_status(status=my_reply, in_reply_to_status_id = tweet.id, auto_populate_reply_metadata=True)
 
-            print("replied: ", my_reply, ", to ", tweet.user.screen_name, "'s "  'tweet, with ID: ', tweet.id)
+                print("replied: ", my_reply, ", to ", tweet.user.screen_name, "'s "  'tweet, with ID: ', tweet.id)
 
-            print("""
-                    > S L E E P I N G <
-                       for 90 seconds
-                     . . . . . . . . .
-                    """)
-            time.sleep(90)
+                print("""
+                        > S L E E P I N G <
+                        for 90 seconds
+                        . . . . . . . . .
+                        """)
+                time.sleep(90)
 
         except StopIteration:
             break
