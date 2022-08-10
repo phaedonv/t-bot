@@ -15,7 +15,7 @@ ACCESS_TOKEN_SECRET = keys['access_token_secret']
 
 USER_NAME = keys['user_name']
 
-OPENSEA_LINK = keys['opensea_link']
+OPENSEA_LINK = keys['opensea_link_choice']
 
 auth = tweepy.OAuthHandler(API_KEY,API_SECRET) #api key and secret
 auth.set_access_token(ACCESS_TOKEN,ACCESS_TOKEN_SECRET) #access token and secret
@@ -38,8 +38,8 @@ replied = []
 #👇 check this out 🧡""", OPENSEA_LINK)
 
 my_reply = (f"""
-            🐱 Awesome!  
-            🧡 Check THIS out 👇 
+            👾 Awesome!  
+            🧡 You have no #choice but to check THIS out 👇 
             {OPENSEA_LINK}
             """)
 
