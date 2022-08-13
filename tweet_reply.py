@@ -38,8 +38,8 @@ replied = []
 #👇 check this out 🧡""", OPENSEA_LINK)
 
 my_reply = (f"""
-            🐱 Awesome!  
-            🧡 You have no #choice but to check THIS out 👇 
+            ✊ Let us all UNITE!  
+            ❤🖤 You have to check THIS out 👇 
             {OPENSEA_LINK}
             """)
 
