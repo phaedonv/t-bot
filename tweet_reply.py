@@ -15,7 +15,7 @@ ACCESS_TOKEN_SECRET = keys['access_token_secret']
 
 USER_NAME = keys['user_name']
 
-OPENSEA_LINK = keys['opensea_link_meow']
+OPENSEA_LINK = keys['opensea_link_chaplin']
 
 auth = tweepy.OAuthHandler(API_KEY,API_SECRET) #api key and secret
 auth.set_access_token(ACCESS_TOKEN,ACCESS_TOKEN_SECRET) #access token and secret
